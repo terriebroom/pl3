@@ -1,1 +1,124 @@
+<!DOCTYPE html>
+<!--Terrie-Ann Broomfield
+GEOM99
+March 2022
+Practical Lab 3
+Creating an application using Luna Canada Map Service
+To educate elementary school students about the provinces and territories of Canada-->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Les Province du Canada &#8208; The Provinces of Canada</title>
+  <style>
+    html, body, #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+    #heading{
+        position:absolute;
+        left:0px;
+        top:0px;
+        z-index:5;
+        background-color: rgba(250, 250, 0, 0.8);
+        height:180px;
+        width:100%;
+        color:rgb(0, 0, 0);
+        padding: 0px;
+        padding-left: 0px;
+        text-align: center;
+        font-family: cursive; 
+        line-height: 12px;
+        border-radius: 20px;
+      }
 
+      #subheading{
+        line-height: 10px;
+        font-family: cursive;
+      }
+    #body{
+        line-height: 15px;
+        font-family: cursive;
+    }
+    #heading2{
+      position:absolute;
+        left:0px;
+        bottom:50px;
+        z-index:5;
+        background-color: rgba(250, 250, 0, 0.8);
+        height:90px;
+        width: 250px;;
+        color:rgb(0, 0, 0);
+        padding: 0px;
+        padding-left: 0px;
+        text-align: center;
+        font-family: cursive; 
+        line-height: 15px;
+        border-radius: 20px; 
+    }
+  </style>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.22/esri/themes/light/main.css">
+  <script src="https://js.arcgis.com/4.22/"></script>
+
+  <script>
+    require([
+      "esri/config",
+      "esri/WebMap",
+      "esri/views/MapView",
+      "esri/widgets/ScaleBar",
+      "esri/widgets/Legend"
+
+    ], function(esriConfig, WebMap, MapView, ScaleBar, Legend) {
+
+      esriConfig.apiKey = "AAPK144901099bb043dfbb877d13892dd5a8eZ4jROWPVn4PetSl3bZSbSYZvYbtfB8yR57A_S69h9jrwH6GVvIj5NBLXtiQxh1n";
+
+      const webmap = new WebMap({
+        portalItem: {
+          id: "a340f0ef888948cca368891dba8ea454"
+        }
+      });
+
+      const view = new MapView({
+        container: "viewDiv",
+        map: webmap
+
+      });
+
+      const scalebar = new ScaleBar({
+        view: view
+      });
+
+      view.ui.add(scalebar, "bottom-left");
+
+      const legend = new Legend ({
+        view: view
+      });
+      view.ui.add(legend, "bottom-right");
+
+  });
+  </script>
+</head>
+<body>
+  <div id="heading">
+    <h1>The Provinces and Territories of Canada for Elementary Schoolers</h1>
+    <h1>&#40;Les Provinces et les Territoires du Canada pour les &#201;l&#232;ves du Primaire&#41;</h1>
+    <div id="subheading">
+         <h2>A brief history of the 10 Canadian provinces and 3 territories</h2>
+    </div>
+    <div id="body">
+        <p>On July 1, 1867, Canada was divided into the four original provinces: Ontario, Quebec, New Brunswick, and Nova Scotia. In the New Dominion in 1870, the Northwest Territories and Manitoba joined the federation, then British Columbia in 1871.
+          Yukon came next when it was separated from the Northwest Territories in 1898.
+          Prince Edward Island became the seventh, smallest, and least populated province in 1873. Later on in 1905, Saskatchewan and Alberta were created, completing what we know as western Canada today.
+          Newfoundland became the 10th province in 1949. Nunavut was separated from the the Northwest Territories on April 1, 1999, forming the northern most territory of Canada.
+        </p>
+    </div>
+  </div>
+  <div id="heading2">
+    <h2>Page Navigation</h2>
+    <p>Click on a province or territory to learn some fun facts.</p>
+  </div>
+  <div id="viewDiv"></div>
+</body>
+</html>
