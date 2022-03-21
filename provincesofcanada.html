@@ -60,10 +60,10 @@ To educate elementary school students about the provinces and territories of Can
     }
     #pic{
       position: absolute;
-        top: 0px;
-        right: 0px;
-        z-index: 5;
-        padding: 0px;
+        bottom: 20px;
+        right: 10px;
+        z-index: 10;
+        padding: 10px;
     }
   </style>
   <link rel="stylesheet" href="https://js.arcgis.com/4.22/esri/themes/light/main.css">
@@ -75,9 +75,10 @@ To educate elementary school students about the provinces and territories of Can
       "esri/WebMap",
       "esri/views/MapView",
       "esri/widgets/ScaleBar",
-      "esri/widgets/Legend"
+      "esri/widgets/Legend",
+      "esri/widgets/Popup"
 
-    ], function(esriConfig, WebMap, MapView, ScaleBar, Legend) {
+    ], function(esriConfig, WebMap, MapView, ScaleBar, Legend, Popup) {
 
       esriConfig.apiKey = "AAPK144901099bb043dfbb877d13892dd5a8eZ4jROWPVn4PetSl3bZSbSYZvYbtfB8yR57A_S69h9jrwH6GVvIj5NBLXtiQxh1n";
 
@@ -103,6 +104,11 @@ To educate elementary school students about the provinces and territories of Can
         view: view
       });
       view.ui.add(legend, "bottom-right");
+
+      const popup = new Popup ({
+        view: view
+      });
+      view.ui.add(popup, "relative");
 
   });
   </script>
